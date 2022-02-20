@@ -27,15 +27,15 @@
         </div>
         <!--Div containing the form data for the books that will be added-->
         <div class="form">
-            <form action="create">
+            <form>
                 <label for="title">Title</label>
-                <input type="text" name="title" placeholder="ex. The Great Gatsby">
+                <input type="text" name="title" placeholder="ex. The Great Gatsby" required>
                 <label for="author">Author</label>
-                <input type="text" name="author" placeholder="ex. F. Scott Fitzgerald">
+                <input type="text" name="author" placeholder="ex. F. Scott Fitzgerald" required>
                 <label for="pages">Number of Pages</label>
-                <input type="number" name="pages">
+                <input type="number" name="pages" required>
                 <label for="read">Have Read</label>
-                <input type="checkbox" name="read">
+                <input type="checkbox" name="read" required>
                 <button type="submit">Add Book</button>
             </form>
         </div>
