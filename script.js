@@ -17,40 +17,36 @@ function addBookToLibrary() {
     const title = document.getElementById('title').value;
     const author = document.getElementById('author').value;
     const pages = document.getElementById('pages').value;
-    let read = document.getElementById('read').checked;
+    const read = document.getElementById('read').checked;
 
-    let newBook = new Book(title, author, pages, read);
+    const newBook = new Book(title, author, pages, read);
 
     myLibrary.push(newBook);
 }
 
 //function to create the book div to be displayed in html
-//function createBook(book) {
-//    const item = document.createElement('div');
-//    item.classList.add('book-item');
-//    item.setAttribute('id',myLibrary.indexOf(book));
-//    item.innerHTML = '<div class="info>' + book["title"] + '<br>' + book["author"] + '<br>' + book["pages"] + '<br>' + 'pages';
-//
-//    return item;
-//}
+function createBook(book) {
+    const item = document.createElement('div');
+    item.classList.add('book-item');
+    item.setAttribute('id',myLibrary.indexOf(book));
+    item.innerHTML = '<div class="info>' + book["title"] + '<br>' + book["author"] + '<br>' + book["pages"] + '<br>' + 'pages';
+
+    return item;
+}
 
 //function to display books on the page
-//function display() {
-//    const allBooks = document.querySelector('.container');
-    //const bookItems = docuemnt.querySelectorAll('.book-item');
-    //bookItems.forEach(book => book.remove());
-//    for(let i=0; i<myLibrary.length; i++){
-//        const bookDiv = createBook(myLibrary[i]);
-//        setStyles(item);
-//        allBooks.appendChild(item);
-//    }
-//}
+function display() {
+    const allBooks = document.querySelector('.allBooks');
+    for(let i=0; i<myLibrary.length; i++){
+        const item = createBook(myLibrary[i]);
+        allBooks.appendChild(item);
+    }
+    
+}
 
 const submitButton = document.querySelector('#submit');
 submitButton.addEventListener("click", function() {
     addBookToLibrary();
     //document.querySelector("form").style.display = "none";
-    //displayBooks();
+    display();
 });
-
-console.log(myLibrary);
