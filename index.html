@@ -12,15 +12,41 @@
 <body>
     <!--Header section for the page with title information-->
     <div class="header">
+        <div class="headerIcon">
+            <img src="./img/library.png"> <!--Icon for the Library-->
+        </div>
+        <div class="headerTitle">
+            JARED's LIBRARY
+        </div>
 
     </div>
     <!--Sidebar section for the page with the form data to enter book information-->
     <div class="sidebar">
+        <div class="addBook">
+            Add Books!
+        </div>
+        <!--Div containing the form data for the books that will be added-->
+        <div class="form">
+            <form action="create">
+                <label for="title">Title</label>
+                <input type="text" name="title" placeholder="ex. The Great Gatsby">
+                <label for="author">Author</label>
+                <input type="text" name="author" placeholder="ex. F. Scott Fitzgerald">
+                <label for="pages">Number of Pages</label>
+                <input type="number" name="pages">
+                <label for="read">Have Read</label>
+                <input type="checkbox" name="read">
+                <button type="submit">Add Book</button>
+            </form>
+        </div>
 
     </div>
     <!--Content section where the cards for each book added will be displayed-->
     <div class="container">
-        
+        <div class="booksTitle">
+            Books
+        </div>
+
     </div>
 </body>
 </html>
