@@ -1,0 +1,8 @@
+/*Library main CSS styling sheet for the application
+Uses grid to organize the sections of the page and creates styling for the individual book cards to be displayed*/
+
+body {
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+    grid-template-rows: 1fr 5fr;
+}
