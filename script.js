@@ -3,7 +3,16 @@
 
 //create array to store the books
 let myLibrary = [];
+const allBooks = document.querySelector('.allBooks');
+const title = document.getElementById('title').value;
+    const author = document.getElementById('author').value;
+    const pages = document.getElementById('pages').value;
+    const read = document.getElementById('read').checked;
 
+    console.log(myLibrary);
+
+const bible = new Book("bible", "jesus", 2000, true);
+myLibrary.push(bible);
 //create the function with the book data
 function Book(title, author, pages, read) {
         this.title = title;
@@ -13,12 +22,8 @@ function Book(title, author, pages, read) {
 }
 
 //function that adds books to myLibrary Array
-function addBookToLibrary() {
-    const title = document.getElementById('title').value;
-    const author = document.getElementById('author').value;
-    const pages = document.getElementById('pages').value;
-    const read = document.getElementById('read').checked;
-
+function addBookToLibrary(title, author, pages, read) {
+    
     const newBook = new Book(title, author, pages, read);
 
     myLibrary.push(newBook);
@@ -26,20 +31,19 @@ function addBookToLibrary() {
 
 //function to create the book div to be displayed in html
 function createBook(book) {
-    const item = document.createElement('div');
-    item.classList.add('book-item');
-    item.setAttribute('id',myLibrary.indexOf(book));
-    item.innerHTML = '<div class="info>' + book["title"] + '<br>' + book["author"] + '<br>' + book["pages"] + '<br>' + 'pages';
+    const itemDiv = document.createElement('div');
+    itemDiv.classList.add('book-item');
+    itemDiv.setAttribute('id',myLibrary.indexOf(book));
+    itemDiv.innerHTML = '<div class="card">' + book["title"] + '<br>' + book["author"] + 
+    '<br>' + book["pages"] + '<br>' + 'pages' + '</div>';
 
-    return item;
+    allBooks.appendChild(itemDiv);
 }
 
 //function to display books on the page
 function display() {
-    const allBooks = document.querySelector('.allBooks');
     for(let i=0; i<myLibrary.length; i++){
-        const item = createBook(myLibrary[i]);
-        allBooks.appendChild(item);
+        createBook(myLibrary[i]);
     }
     
 }
