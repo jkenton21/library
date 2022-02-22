@@ -3,16 +3,30 @@
 
 //create array to store the books
 let myLibrary = [];
+
+const submitButton = document.querySelector('#submit');
+const form = document.querySelector("form");
 const allBooks = document.querySelector('.allBooks');
-const title = document.getElementById('title').value;
-    const author = document.getElementById('author').value;
-    const pages = document.getElementById('pages').value;
-    const read = document.getElementById('read').checked;
+let count = 0;
 
-    console.log(myLibrary);
+console.log(myLibrary);
 
-const bible = new Book("bible", "jesus", 2000, true);
-myLibrary.push(bible);
+//Submit Button Actions
+submitButton.addEventListener("click", addToLibrary);
+
+//function to execute all tasks
+function addToLibrary(e){
+    count++
+    e.preventDefault();
+    addBookToLibrary();
+    form.reset();
+    display();
+    const removeFromLibrary = Array.from(document.querySelectorAll(".allBooks div .delete"));
+    removeFromLibrary.forEach(button => button.addEventListener('click', deleteBook));
+    const toggleRead = Array.from(document.querySelectorAll(".allBooks div .read"));
+    toggleRead.forEach(button => button.addEventListener('click', toggleReadTask));
+}
+
 //create the function with the book data
 function Book(title, author, pages, read) {
         this.title = title;
@@ -22,35 +36,64 @@ function Book(title, author, pages, read) {
 }
 
 //function that adds books to myLibrary Array
-function addBookToLibrary(title, author, pages, read) {
-    
-    const newBook = new Book(title, author, pages, read);
+function addBookToLibrary() {
+    const title = document.getElementById('title').value;
+    const author = document.getElementById('author').value;
+    const pages = document.getElementById('pages').value;
+    const read = document.getElementById('read').checked;
+    let book = new Book(title, author, pages, read);
 
-    myLibrary.push(newBook);
+    myLibrary.push(book);
 }
 
 //function to create the book div to be displayed in html
-function createBook(book) {
-    const itemDiv = document.createElement('div');
-    itemDiv.classList.add('book-item');
-    itemDiv.setAttribute('id',myLibrary.indexOf(book));
-    itemDiv.innerHTML = '<div class="card">' + book["title"] + '<br>' + book["author"] + 
-    '<br>' + book["pages"] + '<br>' + 'pages' + '</div>';
-
-    allBooks.appendChild(itemDiv);
-}
-
-//function to display books on the page
 function display() {
-    for(let i=0; i<myLibrary.length; i++){
-        createBook(myLibrary[i]);
-    }
-    
+    const book = myLibrary[myLibrary.length - 1];
+    const card = document.createElement('div');
+    card.className = "card";
+    card.dataset.key = count;
+
+    const bookTitle = document.createElement("h2");
+    bookTitle.textContent = book.title;
+    bookTitle.className = "book-card-h2";
+    //create h3 author name
+    const bookAuthor = document.createElement("h3");
+    bookAuthor.textContent = book.author;
+    bookAuthor.className = "book-card-h3";
+    //create h3 page number
+    const pageNumber = document.createElement("h3");
+    pageNumber.textContent = `${book.pages} pages`;
+    pageNumber.className = "book-card-h3";
+    //create read button
+    const readButton = document.createElement("button");
+    readButton.textContent = book.read;
+    readButton.className = "read";
+    //create delete button
+    const deleteButton = document.createElement("button");
+    deleteButton.textContent = "Delete book";
+    deleteButton.className = "delete";
+
+    card.append(bookTitle, bookAuthor, pageNumber, readButton, deleteButton);
+
+    allBooks.appendChild(card);
 }
 
-const submitButton = document.querySelector('#submit');
-submitButton.addEventListener("click", function() {
-    addBookToLibrary();
-    //document.querySelector("form").style.display = "none";
-    display();
-});
+//function to delete cards
+function deleteBook() {
+    const parentElement = this.parentElement;
+    parentElement.remove();
+
+}
+
+//function to toggle read status
+function toggleReadTask() {
+    if(this.className === "read") {
+        this.className = "unread";
+        this.textContent = "unread";
+    } else {
+        this.className = "read";
+        this.textContent = "read";
+    }
+}
+
+
