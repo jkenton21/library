@@ -2,6 +2,7 @@
 Uses grid to organize the sections of the page and creates styling for the individual book cards to be displayed*/
 
 body {
+    height: 100vh;
     display: grid;
     grid-template-columns: 1fr 5fr;
     grid-template-rows: 1fr 5fr;
@@ -49,8 +50,22 @@ body {
     font-weight: bold;
 }
 
-.container {
+.booksTitle {
+    padding: 20px;
+    font-size: 24px;
+}
+.allBooks {
     display: grid;
-    gap: 10px;
+    grid-template-columns: repeat(auto-fit, 250px);
+    gap: 1rem;
     padding: 10px;
+}
+
+.card {
+    display: grid;
+    justify-content: center;
+    border-style: solid;
+    border-radius: 10px;
+    background-color: yellow;
+
 }

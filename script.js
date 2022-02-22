@@ -66,7 +66,11 @@ function display() {
     pageNumber.className = "book-card-h3";
     //create read button
     const readButton = document.createElement("button");
-    readButton.textContent = book.read;
+    if (book.read) {
+        readButton.textContent = "Read";
+    } else {
+        readButton.textContent = "Unread";
+    }
     readButton.className = "read";
     //create delete button
     const deleteButton = document.createElement("button");
@@ -89,10 +93,10 @@ function deleteBook() {
 function toggleReadTask() {
     if(this.className === "read") {
         this.className = "unread";
-        this.textContent = "unread";
+        this.textContent = "Unread";
     } else {
         this.className = "read";
-        this.textContent = "read";
+        this.textContent = "Read";
     }
 }
 
