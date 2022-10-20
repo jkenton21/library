@@ -13,12 +13,27 @@ console.log(myLibrary);
 
 //Submit Button Actions
 submitButton.addEventListener("click", addToLibrary);
+//submitButton.addEventListener("click", validate);
+
+//function to validate form
+function validate () {
+    const bookTitle = document.getElementById('title');
+    const bookAuthor = document.getElementById('author');
+    const bookPages = document.getElementById('pages');
+
+    if (!bookTitle.checkValidity() & !bookAuthor.checkValidity() & !bookPages.checkValidity()) {
+        document.getElementById("validationMessage").innerHTML = bookTitle.validationMessage;
+    } else {
+        addBookToLibrary();
+    }
+}
 
 //function to execute all tasks
 function addToLibrary(e){
     count++
     e.preventDefault();
-    addBookToLibrary();
+    //addBookToLibrary();
+    validate();
     form.reset();
     display();
     const removeFromLibrary = Array.from(document.querySelectorAll(".allBooks div .delete"));
@@ -43,6 +58,7 @@ function addBookToLibrary() {
     const author = document.getElementById('author').value;
     const pages = document.getElementById('pages').value;
     const read = document.getElementById('read').checked;
+
     let book = new Book(title, author, pages, read);
 
     myLibrary.push(book);

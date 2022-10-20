@@ -6,6 +6,10 @@ body {
     display: grid;
     grid-template-columns: 1fr 5fr;
     grid-template-rows: 1fr 5fr;
+    width: 100vw;
+    position: absolute;
+    top: 0px;
+    left: 0px;
 }
 
 .header {
@@ -64,8 +68,9 @@ body {
 .card {
     display: grid;
     justify-content: center;
+    align-items: center;
     border-style: solid;
+    border-color: black;
     border-radius: 10px;
-    background-color: yellow;
-
+    background-color: oldlace;
 }
